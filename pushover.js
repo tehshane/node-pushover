@@ -41,7 +41,14 @@ function Pushover(options) {
  * send([user,] title, message, [callback])
  */
 Pushover.prototype.send = function(arg1, arg2, arg3, arg4) {
-	if( arguments.length == 2 ){
+
+  if( arguments.length == 1 ){
+    arg1.token = this.token;
+    arg1.user = this.user;
+    send(arg1);
+  }
+
+  if( arguments.length == 2 ){
 		// (title, message)
 		if(!this.user) {
 			throw new Error('No user token defined');
